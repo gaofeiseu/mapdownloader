@@ -10,14 +10,16 @@ import com.gaofei.util.AtomicCounter;
 import com.gaofei.util.GetStartConfig;
 import com.gaofei.util.PrepareDownload;
 import com.gaofei.util.SplitFactory;
+import com.gaofei.util.ValidationUtil;
 
 public class MainFunction {
 	private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	public static void main(String[] args) {
 		try{
+			ValidationUtil.validate(args);
 			Date st_time = new Date();
-			System.out.println("=====================任务开始=="+st_time.toString()+"======================");
 			BaseBean startConfigBean = GetStartConfig.getStartConfigBean();
+			System.out.println("=====================任务开始=="+st_time.toString()+"======================");
 			List<TilesBean> list_tilesBean = SplitFactory.handleConfigBean(startConfigBean);
 			AtomicCounter.setValue(0);
 			PrepareDownload.run(list_tilesBean);
