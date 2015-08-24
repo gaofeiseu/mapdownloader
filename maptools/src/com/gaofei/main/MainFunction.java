@@ -9,6 +9,7 @@ import com.gaofei.bean.TilesBean;
 import com.gaofei.util.AtomicCounter;
 import com.gaofei.util.GetStartConfig;
 import com.gaofei.util.PrepareDownload;
+import com.gaofei.util.PropertyUtils;
 import com.gaofei.util.SplitFactory;
 import com.gaofei.util.ValidationUtil;
 
@@ -16,9 +17,20 @@ public class MainFunction {
 	private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	public static void main(String[] args) {
 		try{
-			ValidationUtil.validate(args);
+			BaseBean startConfigBean = new BaseBean();
+			if(args.length==8){
+				ValidationUtil.validate(args);
+				startConfigBean = new BaseBean(args);
+			}else{
+				if(PropertyUtils.validate()){
+					System.out.println("=========================读取配置文件获取参数========================");
+					startConfigBean = PropertyUtils.getBean();
+				}else{
+					System.out.println("=========================获取配置文件失败，启用演示模式========================");
+					startConfigBean = GetStartConfig.getStartConfigBean();
+				}
+			}
 			Date st_time = new Date();
-			BaseBean startConfigBean = GetStartConfig.getStartConfigBean();
 			System.out.println("=====================任务开始=="+st_time.toString()+"======================");
 			List<TilesBean> list_tilesBean = SplitFactory.handleConfigBean(startConfigBean);
 			AtomicCounter.setValue(0);

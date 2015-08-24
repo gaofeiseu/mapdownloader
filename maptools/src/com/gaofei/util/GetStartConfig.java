@@ -14,7 +14,7 @@ public class GetStartConfig {
 		list_map_type.add(EnumTilesType.MAPSA);
 		list_map_type.add(EnumTilesType.MAPSADL);
 		int st_zoom = Params.start_zoom;
-		int ed_zoom = 17;
+		int ed_zoom = 15;
 		double st_lon = 118.417774;
 		double st_lat = 32.391383;
 		double ed_lon = 119.243122;

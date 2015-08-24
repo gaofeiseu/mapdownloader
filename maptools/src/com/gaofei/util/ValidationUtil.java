@@ -4,11 +4,11 @@ import java.io.File;
 
 public class ValidationUtil {
 	public static void validate(String[] args) throws Exception{
-		if(args.length!=8){
-			throw new Exception("传递的参数不足8位！");
-		}
 		validateSavePath(args[0]);
 		validateMapType(args[1]);
+		validateZoom(args[2],args[3]);
+		validateLon(args[4],args[6]);
+		validateLat(args[5],args[7]);
 	}
 	private static void validateSavePath(String save_path) throws Exception{
 		File f = new File(save_path);
@@ -61,13 +61,36 @@ public class ValidationUtil {
 	}
 	private static void validateLon(String lon_st,String lon_ed) throws Exception{
 		try{
-			
+			double min_lon = 75;
+			double max_lon = 135;
+			double lon_s = Double.parseDouble(lon_st);
+			double lon_e = Double.parseDouble(lon_ed);
+			if(lon_s>=lon_e){
+				throw new Exception ("开始经度应该比结束经度小才对");
+			}
+			if(lon_s<min_lon||lon_s>max_lon||lon_e<min_lon||lon_e>max_lon){
+				throw new Exception ("经度应该位于"+min_lon+"和"+max_lon+"之间");
+			}
 		}
 		catch(Exception ex){
-			
+			throw ex;
 		}
 	}
 	private static void validateLat(String lat_st,String lat_ed) throws Exception{
-		
+		try{
+			double min_lat = 17;
+			double max_lat = 53;
+			double lat_s = Double.parseDouble(lat_st);
+			double lat_e = Double.parseDouble(lat_ed);
+			if(lat_s<=lat_e){
+				throw new Exception ("开始纬度数值上应该比结束纬度大才对");
+			}
+			if(lat_s<min_lat||lat_s>max_lat||lat_e<min_lat||lat_e>max_lat){
+				throw new Exception ("经度应该位于"+min_lat+"和"+max_lat+"之间");
+			}
+		}
+		catch(Exception ex){
+			throw ex;
+		}
 	}
 }

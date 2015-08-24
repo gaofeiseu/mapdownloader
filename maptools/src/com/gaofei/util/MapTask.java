@@ -33,7 +33,7 @@ public class MapTask implements Callable<Object> {
 				url = "http://mt"+i+".google.cn/vt/lyrs=m@259000000&hl=zh-CN&gl=CN&src=app&x="+x+"&y="+y+"&z="+z+"&s=Galileo";
 				f = Params.mapabc_folder;
 			}else if(taskBean.getTile_type() == EnumTilesType.MAPSA){
-				url = "http://mt"+i+".google.cn/vt?lyrs=s@175&hl=zh-CN&gl=CN&src=app&rlbl=1&x="+x+"&y="+y+"&z="+z+"&s=Galileo";
+				url = "http://mt"+i+".google.cn/vt?lyrs=s@"+Params.mapsa_num+"&hl=zh-CN&gl=CN&src=app&rlbl=1&x="+x+"&y="+y+"&z="+z+"&s=Galileo";
 				f = Params.mapSa_folder;
 			}else if(taskBean.getTile_type() == EnumTilesType.MAPSADL){
 				url = "http://mt"+i+".google.cn/vt/imgtp=png32&lyrs=h@271000000,highlight:0x35b58c9b668dcd83:0x8ffbb60b79df1b06@1%7Cstyle:maps&hl=zh-CN&gl=CN&src=app&expIds=201527&rlbl=1&x="+x+"&y="+y+"&z="+z+"&s=Galileo";

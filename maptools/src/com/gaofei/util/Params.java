@@ -10,4 +10,13 @@ public class Params {
 	public static String mapSaDL_folder = "mapSaDL";
 	public static int per_second = 5;
 	public static int last_num = 0;
+	public static int mapsa_num = 180;
+	static{
+		try{
+			mapsa_num = Integer.parseInt(PropertyUtils.get("mapsa_num"));
+		}
+		catch(Exception ex){
+			
+		}
+	}
 }

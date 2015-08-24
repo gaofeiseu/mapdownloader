@@ -1,5 +1,6 @@
 package com.gaofei.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseBean {
@@ -12,6 +13,30 @@ public class BaseBean {
 	private double st_lat;
 	private double ed_lat;
 	
+	public BaseBean(String[] args) {
+		this.save_path = args[0];
+		String[] types = args[1].split("#");
+		List<EnumTilesType> list_map_type = new ArrayList<EnumTilesType>();
+		for(String type : types){
+			if(EnumTilesType.MAPABC.toString().equals(type)){
+				list_map_type.add(EnumTilesType.MAPABC);
+			}else if(EnumTilesType.MAPSA.toString().equals(type)){
+				list_map_type.add(EnumTilesType.MAPSA);
+			}else if(EnumTilesType.MAPSADL.toString().equals(type)){
+				list_map_type.add(EnumTilesType.MAPSADL);
+			}
+		}
+		this.list_map_type = list_map_type;
+		this.st_zoom = Integer.parseInt(args[2]);
+		this.ed_zoom = Integer.parseInt(args[3]);
+		this.st_lon = Double.parseDouble(args[4]);
+		this.ed_lon = Double.parseDouble(args[6]);
+		this.st_lat = Double.parseDouble(args[5]);
+		this.ed_lat = Double.parseDouble(args[7]);
+	}
+	public BaseBean() {
+		
+	}
 	public BaseBean(String save_path, List<EnumTilesType> list_map_type, int st_zoom, int ed_zoom, double st_lon,
 			double ed_lon, double st_lat, double ed_lat) {
 		this.save_path = save_path;
