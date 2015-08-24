@@ -17,6 +17,7 @@ public class MainFunction {
 	private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	public static void main(String[] args) {
 		try{
+			System.out.println("带参数的命令示例\t\tjava -jar mapdownloader.jar F:/map1234 1#2#3 1 17 118.417774 32.391383 119.243122 31.565489");
 			BaseBean startConfigBean = new BaseBean();
 			if(args.length==8){
 				ValidationUtil.validate(args);
